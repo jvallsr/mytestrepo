@@ -7,6 +7,8 @@ def translate(word):
     word = word.lower()
     if word in data:
         return data[word]
+    elif word.title() in data:
+        return data[word.title()]
     elif len(get_close_matches(word, data.keys())) > 0:
         yn = input("Did you mean %s instead? Type Y if yes, N if no: " % get_close_matches(word, data.keys())[0])
         if yn == "Y":
@@ -19,9 +21,7 @@ def translate(word):
         return "Not even close matches in the dictionary. Please try again."
 
 word = input("Enter word: ")
-
 output = translate(word)
-
 if type(output) == list:
     for item in output:
         print(item)
